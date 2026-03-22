@@ -1,4 +1,5 @@
 from fastapi import APIRouter, File, UploadFile
+from fastapi.responses import PlainTextResponse
 
 from m5_petit_voice_recognition.schemas import (
     AnalyzeAudioResponse,
@@ -23,6 +24,49 @@ whisper_service = WhisperService()
 sound_event_service = SoundEventService()
 voice_feature_service = VoiceFeatureService()
 
+@router.get("/help", response_class=PlainTextResponse)
+async def help_text() -> str:
+    return """m5_petit_voice_recognition API Help
+
+    Available endpoints:
+    - GET /health
+        Health check
+
+    - GET /help
+        Show this help text
+
+    - POST /transcribe
+        Transcribe audio file to text
+
+    - POST /extract_voice_features
+        Extract voice features from audio file
+
+    - POST /analyze_audio
+        Full analysis with detailed output
+
+    - POST /analyze_audio_summary
+        Compact summary for Claude or other clients
+
+    Examples:
+
+    1) Health check
+    curl http://127.0.0.1:8765/health
+
+    2) Help
+    curl http://127.0.0.1:8765/help
+
+    3) Transcribe
+    curl -X POST http://127.0.0.1:8765/transcribe \\
+    -F "file=@sample.wav"
+
+    4) Full analysis
+    curl -X POST http://127.0.0.1:8765/analyze_audio \\
+    -F "file=@sample.wav"
+
+    5) Summary analysis
+    curl -X POST http://127.0.0.1:8765/analyze_audio_summary \\
+    -F "file=@sample.wav"
+    """
 
 @router.get("/health", response_model=HealthResponse)
 async def health() -> HealthResponse:
