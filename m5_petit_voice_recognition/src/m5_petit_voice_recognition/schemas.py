@@ -14,6 +14,8 @@ class TranscribeResponse(BaseModel):
     text: str
     language: str | None = None
     duration_sec: float | None = None
+    speaker: str = "unknown"
+    speaker_confidence: float = 0.0
 
 
 class VoiceFeaturesResponse(BaseModel):
@@ -37,3 +39,5 @@ class AnalyzeAudioResponse(BaseModel):
     sound_events: list[SoundEvent]
     voice_features: VoiceFeaturesResponse
     summary_for_claude: str
+    speaker: str = "unknown"
+    speaker_confidence: float = 0.0

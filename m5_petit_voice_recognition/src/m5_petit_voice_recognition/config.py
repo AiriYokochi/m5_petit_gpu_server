@@ -24,6 +24,9 @@ class Settings(BaseSettings):
     voice_min_pause_sec: float = Field(default=0.20, alias="VOICE_MIN_PAUSE_SEC")
     enable_opensmile: bool = Field(default=False, alias="ENABLE_OPENSMILE")
 
+    speaker_registry_path: str = Field(default="speaker_registry.json", alias="SPEAKER_REGISTRY_PATH")
+    speaker_threshold: float = Field(default=0.75, alias="SPEAKER_THRESHOLD")
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

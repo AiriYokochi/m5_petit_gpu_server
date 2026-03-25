@@ -14,7 +14,8 @@ dependencies = [
   "numpy>=2.0.0",
   "librosa>=0.11.0",
   "praat-parselmouth>=0.4.7",
-  "opensmile>=2.6.0"
+  "opensmile>=2.6.0",
+  "resemblyzer>=0.1.1.dev0"
 ]
 
 [dependency-groups]
