@@ -12,6 +12,20 @@ class Settings(BaseSettings):
     piper_model_path: Path = Field(alias="PIPER_MODEL_PATH")
     output_dir: Path = Field(default=Path("./outputs"), alias="OUTPUT_DIR")
 
+    kokoro_model_path: Path = Field(
+        default=Path.home() / ".local/share/kokoro/kokoro-v1.0.onnx",
+        alias="KOKORO_MODEL_PATH",
+    )
+    kokoro_voices_path: Path = Field(
+        default=Path.home() / ".local/share/kokoro/voices-v1.0.bin",
+        alias="KOKORO_VOICES_PATH",
+    )
+
+    voicevox_url: str = Field(
+        default="http://127.0.0.1:50021",
+        alias="VOICEVOX_URL",
+    )
+
     piper_speaker: int = Field(default=0, alias="PIPER_SPEAKER")
     piper_length_scale: float = Field(default=1.0, alias="PIPER_LENGTH_SCALE")
     piper_noise_scale: float = Field(default=0.5, alias="PIPER_NOISE_SCALE")
