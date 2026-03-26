@@ -32,7 +32,7 @@ class WhisperService:
     def transcribe_path(self, audio_path: Path) -> dict:
         info = sf.info(str(audio_path))
         model = self._get_model()
-        segments, meta = model.transcribe(str(audio_path))
+        segments, meta = model.transcribe(str(audio_path), language=settings.whisper_language or None)
         text = "".join(segment.text for segment in segments).strip()
 
         return {

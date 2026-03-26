@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     whisper_model: str = Field(default="small", alias="WHISPER_MODEL")
     whisper_device: str = Field(default="cpu", alias="WHISPER_DEVICE")
     whisper_compute_type: str = Field(default="int8", alias="WHISPER_COMPUTE_TYPE")
+    whisper_language: str = Field(default="ja", alias="WHISPER_LANGUAGE")
 
     sound_model: str = Field(default="panns", alias="SOUND_MODEL")
     sound_top_k: int = Field(default=5, alias="SOUND_TOP_K")
