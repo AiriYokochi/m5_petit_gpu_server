@@ -12,6 +12,11 @@ class VoicevoxService:
         text: str,
         speaker: int = 0,
         speed_scale: float = 1.0,
+        pitch_scale: float | None = None,
+        intonation_scale: float | None = None,
+        volume_scale: float | None = None,
+        pre_phoneme_length: float | None = None,
+        post_phoneme_length: float | None = None,
     ) -> Path:
         base = settings.voicevox_url
 
@@ -24,6 +29,16 @@ class VoicevoxService:
         audio_query = query_resp.json()
 
         audio_query["speedScale"] = speed_scale
+        if pitch_scale is not None:
+            audio_query["pitchScale"] = pitch_scale
+        if intonation_scale is not None:
+            audio_query["intonationScale"] = intonation_scale
+        if volume_scale is not None:
+            audio_query["volumeScale"] = volume_scale
+        if pre_phoneme_length is not None:
+            audio_query["prePhonemeLength"] = pre_phoneme_length
+        if post_phoneme_length is not None:
+            audio_query["postPhonemeLength"] = post_phoneme_length
 
         synth_resp = httpx.post(
             f"{base}/synthesis",

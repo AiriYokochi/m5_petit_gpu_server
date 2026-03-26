@@ -27,3 +27,8 @@ class SpeakRequest(BaseModel):
     # voicevox options
     voicevox_speaker: int | None = None
     speed_scale: float | None = None
+    pitch_scale: float | None = None
+    intonation_scale: float | None = None
+    volume_scale: float | None = None
+    pre_phoneme_length: float | None = None
+    post_phoneme_length: float | None = None

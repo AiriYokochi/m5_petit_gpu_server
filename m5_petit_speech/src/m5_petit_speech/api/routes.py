@@ -104,6 +104,11 @@ def _synthesize(req: SpeakRequest):
             text=req.text,
             speaker=req.voicevox_speaker if req.voicevox_speaker is not None else 0,
             speed_scale=req.speed_scale or 1.0,
+            pitch_scale=req.pitch_scale,
+            intonation_scale=req.intonation_scale,
+            volume_scale=req.volume_scale,
+            pre_phoneme_length=req.pre_phoneme_length,
+            post_phoneme_length=req.post_phoneme_length,
         )
     else:
         return piper_service.synthesize(
